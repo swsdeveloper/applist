@@ -73,7 +73,7 @@ content2 = ":violet[Below you can find some of the apps I have built in Python. 
 st.write(" ")
 st.subheader(content2)
 
-col3, col4 = st.columns(2)
+col3, _, col4 = st.columns([1.5, 0.5, 1.5])  # leave space (i.3., an empty column) between col3 and col4
 
 cols = [col3, col4]
 col_iterator = itertools.cycle(cols)  # for function display_next_app()
