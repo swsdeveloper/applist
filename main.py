@@ -6,7 +6,7 @@ import itertools
 def display_next_app(app_data) -> None:
     """
     Display app data, alternating between streamlit col1 and col2.
-    This function uses col_iterator to alternate between columns.
+    This function uses `col_iterator` to alternate between columns.
 
     :param app_data: tuple consisting of 4 strings (title, description, url, image filename)
     :return: None
@@ -26,9 +26,6 @@ def display_next_app(app_data) -> None:
 st.set_page_config(layout="wide")
 
 col1, col2 = st.columns(2)
-
-cols = [col1, col2]
-col_iterator = itertools.cycle(cols)  # for function display_next_app()
 
 with col1:
     st.image('images/photo.jpeg', width=490)
@@ -74,17 +71,16 @@ with col2:
     # On my own, I have studied mobile app development (Objective-C, Swift), website creation, machine learning, and
     # various programming languages including Python, Ruby, C++, Go, Smalltalk, and Perl.
 
-content2 = """Below you can find some of the apps I have built in Python. \
-Feel free to contact me!"""
+content2 = ":violet[Below you can find some of the apps I have built in Python. Feel free to contact me!]"
+st.write(" ")
+st.subheader(content2)
 
-col1.write('\n' + content2)
+col3, col4 = st.columns(2)
+
+cols = [col3, col4]
+col_iterator = itertools.cycle(cols)  # for function display_next_app()
 
 with open('data.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=';')
-    try:
-        for app_info in reader:
-            display_next_app(app_info)
-    except ValueError:
-        print('\n*** ERROR: Invalid data in csvfile ***\n')
-    finally:
-        print('\n*** ERROR: Problem reading csvfile ***\n')
+    for row in reader:
+        display_next_app(row)
