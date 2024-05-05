@@ -17,7 +17,7 @@ def display_next_app(app_data) -> None:
         st.subheader(desc)
         img_file = 'images/' + img
         st.image(img_file)
-        st.page_link(url, label=f':blue[{url}]')
+        st.write(f"[Source Code]({url})")  # [url label](url)
     return
 
 
