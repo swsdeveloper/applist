@@ -1,5 +1,5 @@
 import streamlit as st
-import csv
+import pandas
 import itertools
 
 
@@ -8,14 +8,12 @@ def display_next_app(app_data) -> None:
     Display app data, alternating between streamlit col1 and col2.
     This function uses `col_iterator` to alternate between columns.
 
-    :param app_data: tuple consisting of 4 strings (title, description, url, image filename)
+    :param app_data: dict consisting of 4 string keys (title, description, url, image) all with string values
     :return: None
     """
-    title, desc, url, img = app_data
-    if title == 'title':
-        return
+    title, desc, url, img = app_data  # unpack the dict entry
     with next(col_iterator):
-        st.title(title)
+        st.header(title)
         st.subheader(desc)
         img_file = 'images/' + img
         st.image(img_file)
@@ -81,6 +79,6 @@ cols = [col3, col4]
 col_iterator = itertools.cycle(cols)  # for function display_next_app()
 
 with open('data.csv', newline='') as csvfile:
-    reader = csv.reader(csvfile, delimiter=';')
-    for row in reader:
+    reader = pandas.read_csv(csvfile, sep=';')
+    for index, row in reader.iterrows():
         display_next_app(row)
