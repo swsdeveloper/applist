@@ -78,7 +78,8 @@ col3, _, col4 = st.columns([1.5, 0.5, 1.5])  # leave space (i.3., an empty colum
 cols = [col3, col4]
 col_iterator = itertools.cycle(cols)  # for function display_next_app()
 
-with open('data.csv', newline='') as csvfile:
-    reader = pandas.read_csv(csvfile, sep=';')
-    for index, row in reader.iterrows():
-        display_next_app(row)
+
+csvfile = 'data.csv'
+reader = pandas.read_csv(csvfile, sep=';')
+for index, row in reader.iterrows():
+    display_next_app(row)
