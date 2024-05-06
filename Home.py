@@ -23,14 +23,14 @@ def display_next_app(app_data) -> None:
 
 st.set_page_config(layout="wide")
 
+st.title("Steven Shatz")
+
 col1, col2 = st.columns(2)
 
 with col1:
-    st.image('images/photo.jpeg', width=490)
+    st.image('images/photo.jpeg', use_column_width=True)
 
 with col2:
-    st.title("Steven Shatz")
-
     # Define alignment style: left and right-justify text
     content_alignment = '''
         <style>
